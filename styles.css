@@ -40,8 +40,15 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
 }
 
 /* Main Content */
@@ -103,7 +110,8 @@ body {
 .video-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
     background: #000;
     border-radius: 12px;
     overflow: hidden;
@@ -139,7 +147,7 @@ body {
 }
 
 /* Hide placeholder when video is loaded */
-.video-container iframe[src]:not([src=""]) + .video-placeholder {
+.video-container iframe[src]:not([src=""])+.video-placeholder {
     display: none;
 }
 
@@ -195,6 +203,29 @@ body {
     border-radius: 8px;
 }
 
+/* Disclaimer Section */
+.disclaimer {
+    max-width: 1000px;
+    margin: 40px auto 20px;
+    padding: 20px 30px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.disclaimer p {
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.disclaimer strong {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -224,6 +255,11 @@ body {
 
     .arrow {
         font-size: 1.5rem;
+    }
+
+    .disclaimer {
+        padding: 15px 20px;
+        margin: 30px 15px 15px;
     }
 }
 
