@@ -33,16 +33,33 @@
                 </div>
             </div>
 
-            <div class="video-runtime-banner">
-                <span>⏱️ Video Runtime: 6 minutes and 17 seconds</span>
+            <div class="slideshow-container">
+                <div class="slides-wrapper" id="slidesWrapper">
+                    <div class="slide"><img src="slides/slide1.jpg" alt="Slide 1"></div>
+                    <div class="slide"><img src="slides/slide2.jpg" alt="Slide 2"></div>
+                    <div class="slide"><img src="slides/slide3.jpg" alt="Slide 3"></div>
+                    <div class="slide"><img src="slides/slide4.jpg" alt="Slide 4"></div>
+                    <div class="slide"><img src="slides/slide5.jpg" alt="Slide 5"></div>
+                    <div class="slide"><img src="slides/slide6.jpg" alt="Slide 6"></div>
+                    <div class="slide"><img src="slides/slide7.jpg" alt="Slide 7"></div>
+                    <div class="slide"><img src="slides/slide8.jpg" alt="Slide 8"></div>
+                    <div class="slide"><img src="slides/slide9.jpg" alt="Slide 9"></div>
+                    <div class="slide"><img src="slides/slide10.jpg" alt="Slide 10"></div>
+                    <div class="slide"><img src="slides/slide11.jpg" alt="Slide 11"></div>
+                    <div class="slide"><img src="slides/slide12.jpg" alt="Slide 12"></div>
+                    <div class="slide"><img src="slides/slide13.jpg" alt="Slide 13"></div>
+                    <div class="slide"><img src="slides/slide14.jpg" alt="Slide 14"></div>
+                    <div class="slide"><img src="slides/slide15.jpg" alt="Slide 15"></div>
+                    <div class="slide"><img src="slides/slide16.jpg" alt="Slide 16"></div>
+                    <div class="slide"><img src="slides/slide17.jpg" alt="Slide 17"></div>
+                </div>
             </div>
-
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/8oU8go3NpFI" title="VSL Video" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+            <div class="slideshow-controls">
+                <button class="slide-btn" onclick="changeSlide(-1)">&#10094;</button>
+                <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">17</span></span>
+                <button class="slide-btn" onclick="changeSlide(1)">&#10095;</button>
             </div>
+            <div class="slide-indicators" id="slideIndicators"></div>
         </section>
 
         <!-- Story Section -->
@@ -131,6 +148,69 @@
     <!-- Footer -->
     <footer class="footer">
     </footer>
+
+    <script>
+        // Slideshow functionality
+        let currentSlideIndex = 0;
+        const totalSlides = 17;
+        const slidesWrapper = document.getElementById('slidesWrapper');
+        const slideIndicatorsContainer = document.getElementById('slideIndicators');
+
+        // Create indicators
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator' + (i === 0 ? ' active' : '');
+            indicator.onclick = () => goToSlide(i);
+            slideIndicatorsContainer.appendChild(indicator);
+        }
+
+        function updateSlideshow() {
+            slidesWrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+
+            // Update indicators
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((ind, index) => {
+                ind.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+            updateSlideshow();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateSlideshow();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const slideshowContainer = document.querySelector('.slideshow-container');
+
+        slideshowContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        slideshowContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) changeSlide(1);
+            if (touchEndX - touchStartX > 50) changeSlide(-1);
+        }, false);
+
+        // Disable right-click on slideshow
+        slideshowContainer.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
 </body>
 
 </html>
