@@ -238,6 +238,23 @@ body {
     text-align: center;
 }
 
+/* Slide Reading Note */
+.slide-reading-note {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.slide-reading-note p {
+    color: #92400e;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
+
 /* Story Section */
 .story-section {
     padding: 20px 0;
