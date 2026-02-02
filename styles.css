@@ -13,15 +13,15 @@ body {
 
 /* Warning Banner (Guarantee Box Style) */
 .warning-banner {
-    background: #047857;
-    /* Professional Emerald Green */
+    background: #dc2626;
+    /* Red */
     padding: 20px 15px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    box-shadow: 0 4px 20px rgba(4, 120, 87, 0.3);
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
